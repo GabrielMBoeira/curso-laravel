@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    protected $request;
+
+    public function __construct(Request $request, )
+    {
+        dd($request);
+        
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return "Listagem de produtos";
     }
 
     /**
@@ -45,7 +56,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        return "Detalhes do produto {$id}";
     }
 
     /**
