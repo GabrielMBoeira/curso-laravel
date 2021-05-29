@@ -7,7 +7,11 @@
     <title>Minha view</title>
 </head>
 <body>
-    <h1>Minha view</h1>
-    {{ $teste }}
+    {{-- {{ $teste }}  Neste tipo de impressão já é feita a proteção htmlspecialchars --}} 
+    {{-- {!! $teste !!} EVITAR = Neste tipo de impressão NÃO é feita a proteção htmlspecialchars --}} 
+
+
+    
+
 </body>
 </html>
