@@ -30,7 +30,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return "Listagem de produtos";
+
+        $teste = 123;
+
+        // return view('teste', ['teste' => $teste]);
+
+        return view('teste', compact('teste'));
     }
 
     /**
