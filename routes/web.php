@@ -11,15 +11,17 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+//Crud automático
+Route::resource('products', 'ProductController');
 
-//Rotas para fazer o CRUD
-Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy'); //Faz de fato o update do prooduto
-Route::put('/products/{id}', 'ProductController@update')->name('products.update'); //Faz de fato o update do prooduto
-Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit'); //Direciona para o form para editar
-Route::get('/products/create', 'ProductController@create')->name('products.create'); //Direciona para o form para criar
-Route::get('/products/{id}', 'ProductController@show')->name('products.show'); //Exibe um produto específico
-Route::get('/products', 'ProductController@index')->name('products.index'); //Exibe uma lista de produtos
-Route::post('/products', 'ProductController@store')->name('products.store'); //Faz de fato o cadastro do prooduto
+// //Rotas para fazer o CRUD
+// Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy'); //Faz de fato o update do prooduto
+// Route::put('/products/{id}', 'ProductController@update')->name('products.update'); //Faz de fato o update do prooduto
+// Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit'); //Direciona para o form para editar
+// Route::get('/products/create', 'ProductController@create')->name('products.create'); //Direciona para o form para criar
+// Route::get('/products/{id}', 'ProductController@show')->name('products.show'); //Exibe um produto específico
+// Route::get('/products', 'ProductController@index')->name('products.index'); //Exibe uma lista de produtos
+// Route::post('/products', 'ProductController@store')->name('products.store'); //Faz de fato o cadastro do prooduto
 
 Route::get('/login', function () {
     return 'Login';
@@ -41,7 +43,6 @@ Route::get('/login', function () {
 //     })->name('home');
     
 // });
-
 
 
 
