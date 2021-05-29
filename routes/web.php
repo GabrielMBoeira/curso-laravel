@@ -1,26 +1,65 @@
 <?php
 
+//Laravel 8
+// use App\Http\Controllers\PostController;
+// Route::get('/posts', [PostController::class, 'index']);
+
+// Criar um controller comando: php artisan make:controller Admin\TesteController
+// LIMPAR CACHE (ROTAS) Comando: php artisan route:list
+// Listar rotas comando: php artisan route:list
+
+
 use Illuminate\Support\Facades\Route;
 
 
 //----------------------------------Grupos de Rotas--------------------------------------------
 
-Route::get('/admin/dashboards', function () {
-    return 'Home Admin';
-})->middleware('auth');
 
-Route::get('/admin/financeiro', function () {
-    return 'Financeiro Admin';
-});
+// Route::group(['middleware' => [], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-Route::get('/admin/produtos', function () {
-    return 'Produtos Admin';
-});
+//     Route::get('/dashboards', 'TesteController@teste')->name('dashboard');
 
-//LOGIN
-Route::get('/login', function () {
-    return 'Login';
-})->name('login');
+//     Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
+
+//     Route::get('/produtos', 'TesteController@teste')->name('products');
+
+//     Route::get('/', function () {
+//         return redirect()->route('dashboard');
+//     })->name('home');
+    
+// });
+
+
+
+
+// Route::middleware([])->group(function () {
+
+//     Route::prefix('admin')->group(function () {
+
+//         Route::namespace('Admin')->group(function () {
+
+//             Route::name('admin.')->group(function () {
+
+//                 Route::get('/dashboards', 'TesteController@teste')->name('dashboard');
+
+//                 Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
+
+//                 Route::get('/produtos', 'TesteController@teste')->name('products');
+
+//                 Route::get('/', function () {
+//                     return redirect()->route('dashboard');
+//                 })->name('home');
+//             });
+//         });
+//     });
+// });
+
+
+
+// //LOGIN
+// Route::get('/login', function () {
+//     return 'Login';
+// })->name('login');
 
 
 
@@ -43,7 +82,7 @@ Route::view('/view', 'welcome', ['id' => 'teste']);
 
 //-----------------------------------------Redirect--------------------------------------------
 
-Route::redirect('/redirect1', '/redirect2'); 
+Route::redirect('/redirect1', '/redirect2');
 
 // Route::get('redirect1', function () {
 //     return redirect('/redirect2');
@@ -88,4 +127,3 @@ Route::get('/contato', function () {
 Route::get('/', function () {
     return view('welcome');
 });
-
