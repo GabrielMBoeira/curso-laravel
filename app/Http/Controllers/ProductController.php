@@ -10,9 +10,15 @@ class ProductController extends Controller
 
     protected $request;
 
-    public function __construct(Request $request, )
+    public function __construct(Request $request)
     {
-        dd($request);
+        // dd($request);
+
+        // $this->middleware('auth'); //Todos os métodos precisa estar autenticado
+
+        // $this->middleware('auth')->only('create'); //Somente create ou ['create', 'store'] precisa estar autenticado
+
+           $this->middleware('auth')->except(['index', 'show']); //Todos os métodos precisa estar autenticado -> exceto index e show
         
         $this->request = $request;
     }

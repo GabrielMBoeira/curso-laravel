@@ -12,9 +12,9 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 //Crud automático
-Route::resource('products', 'ProductController');
+Route::resource('products', 'ProductController'); //->middleware('auth');
 
-// //Rotas para fazer o CRUD
+// // //Rotas para fazer o CRUD
 // Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy'); //Faz de fato o update do prooduto
 // Route::put('/products/{id}', 'ProductController@update')->name('products.update'); //Faz de fato o update do prooduto
 // Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit'); //Direciona para o form para editar
