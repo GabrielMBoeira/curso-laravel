@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         // return view('teste', ['teste' => $teste]);
 
-        return view('teste', compact('teste'));
+        return view('admin.pages.products.index', compact('teste'));
     }
 
     /**
