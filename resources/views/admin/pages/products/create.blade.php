@@ -11,7 +11,7 @@
         {{-- <input type="text" name="_token" value="{{ csrf_token() }}"> --}}
         <input type="text" name="name" placeholder="Nome">
         <input type="text" name="description" placeholder="Descrição">
-        <button type="submit">Enviar</button>
+        <button>Enviar</button>
     </form>
     
 @endsection
