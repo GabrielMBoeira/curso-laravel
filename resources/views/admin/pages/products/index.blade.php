@@ -104,11 +104,16 @@
 
 @endsection
 
-<style>
-.last {
-    background: #CCC
-}
+@push('style')
+    <style>
+        .last {
+            background: #CCC
+        };
+    </style>
+@endpush
 
-;
-
-</style>
+@push('scripts')
+    <script>
+        document.body.style.background = '#efefef';
+    </script>
+@endpush
