@@ -18,7 +18,7 @@ class ProductController extends Controller
 
         // $this->middleware('auth')->only('create'); //Somente create ou ['create', 'store'] precisa estar autenticado
 
-           $this->middleware('auth')->except(['index', 'show']); //Todos os métodos precisa estar autenticado -> exceto index e show
+        // $this->middleware('auth')->except(['index', 'show']); //Todos os métodos precisa estar autenticado -> exceto index e show
         
         $this->request = $request;
     }
@@ -48,7 +48,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.products.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('Cadastrando...');
     }
 
     /**
