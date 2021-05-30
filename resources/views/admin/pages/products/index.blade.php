@@ -6,10 +6,24 @@
     <h1>Exibindo os produtos (index)</h1>
 
 
+    @component('admin.components.card')
+        @slot('title')
+            <h1>Título card</h1>
+        @endslot
+        Um card de exemplo
+    @endcomponent
+
+    <hr>
+
+    {{-- include --}}
+    @include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
+
+
     @if (isset($products))
         @foreach ($products as $product)
-            <p class="@if ($loop->last) last @endif"> {{ $product }} </p>
-        @endforeach 
+            <p class="@if ($loop->last) last @endif"> {{ $product }}
+            </p>
+        @endforeach
     @endif
 
     <hr>
@@ -49,47 +63,52 @@
 
 
     {{-- verifica se está vazio --}}
-    @empty($teste3)
-        <p>Vazio...</p>
-    @else
-    @endempty
+@empty($teste3)
+    <p>Vazio...</p>
+@else
+@endempty
 
 
-    {{-- verifica se está autenticado --}}
-    @auth
-        <p>Autenticado...</p>
-    @else
-        <p>Não autenticado...</p>
-    @endauth
+{{-- verifica se está autenticado --}}
+@auth
+    <p>Autenticado...</p>
+@else
+    <p>Não autenticado...</p>
+@endauth
 
 
-    {{-- só entra se não estiver autenticado --}}
-    @guest
-        <p>Guest - Não autenticado...</p>
-    @else
-    @endguest
+{{-- só entra se não estiver autenticado --}}
+@guest
+    <p>Guest - Não autenticado...</p>
+@else
+@endguest
 
 
-    {{-- switch normal --}}
-    @switch($teste)
-        @case(1)
-            Igual a 1
-            @break
-        @case(2)
-            Igual a 2
-            @break
-        @case(3)
-            Igual a 3
-            @break
-        @case(123)
-            Igual a 123
-            @break
-        @default
-            Default
-    @endswitch
+{{-- switch normal --}}
+@switch($teste)
+    @case(1)
+        Igual a 1
+    @break
+    @case(2)
+        Igual a 2
+    @break
+    @case(3)
+        Igual a 3
+    @break
+    @case(123)
+        Igual a 123
+    @break
+    @default
+        Default
+@endswitch
 
 @endsection
 
 <style>
-    .last {background: #CCC};
+.last {
+    background: #CCC
+}
+
+;
+
 </style>
