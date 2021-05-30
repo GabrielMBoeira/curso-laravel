@@ -138,6 +138,6 @@ Route::get('/login', function () {
 //     return view('contact');
 // });
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});

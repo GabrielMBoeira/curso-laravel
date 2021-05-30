@@ -5,6 +5,25 @@
 @section('content')
     <h1>Exibindo os produtos (index)</h1>
 
+
+    @if (isset($products))
+        @foreach ($products as $product)
+            <p class="@if ($loop->last) last @endif"> {{ $product }} </p>
+        @endforeach 
+    @endif
+
+    <hr>
+
+    {{-- já verifica se existe products --}}
+    @forelse ($products as $product)
+        <p class="@if ($loop->first) last @endif"> {{ $product }}</p>
+    @empty
+        Não existem produtos cadastrados
+    @endforelse
+
+
+    <hr>
+
     @if ($teste === '123')
         É igual
     @elseif ($teste == 123)
@@ -69,5 +88,8 @@
             Default
     @endswitch
 
-
 @endsection
+
+<style>
+    .last {background: #CCC};
+</style>
