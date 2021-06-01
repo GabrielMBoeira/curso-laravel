@@ -73,11 +73,18 @@ class ProductController extends Controller
         // dd($request->input('name', 'default'));
 
         //Pega todos menos o exceto
-        dd($request->except('_token', 'name'));
-        
+        // dd($request->except('_token', 'name'));
 
+        if ( $request->file('photo')->isValid() ) {
+            // dd( $request->photo->extension());
+            // dd( $request->photo->getClientOriginalName());
 
+            
+            // dd( $request->file('photo')->store('products')); //Enviando para dentro do laravel storage/app/productsphoto
 
+            $nameFile = $request->name . '.' . $request->photo->extension();
+            dd( $request->file('photo')->storeAs('products', $nameFile));  //storeAs
+        }
         
     }
 
