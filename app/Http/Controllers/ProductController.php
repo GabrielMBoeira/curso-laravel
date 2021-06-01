@@ -19,7 +19,7 @@ class ProductController extends Controller
         // $this->middleware('auth')->only('create'); //Somente create ou ['create', 'store'] precisa estar autenticado
 
         // $this->middleware('auth')->except(['index', 'show']); //Todos os métodos precisa estar autenticado -> exceto index e show
-        
+
         $this->request = $request;
     }
 
@@ -59,6 +59,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        //Se não passar a requisição volta para o arquivo de onde veio para mostrar erros
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'descripition' => 'nullable|min:3|max:10000',      //nullable = opcional
+            'photo' => 'required|image',
+        ]);
+
+        dd('ok');
+
         //Pega todos os dados da requisição
         // dd($request->all());
 
@@ -75,25 +85,22 @@ class ProductController extends Controller
         //Pega todos menos o exceto
         // dd($request->except('_token', 'name'));
 
-        if ( $request->file('photo')->isValid() ) {
-            // dd( $request->photo->extension());
-            // dd( $request->photo->getClientOriginalName());
+        // if ( $request->file('photo')->isValid() ) {
+        //     // dd( $request->photo->extension());
+        //     // dd( $request->photo->getClientOriginalName());
 
+        //     // dd( $request->file('photo')->store('products')); //Enviando para dentro do laravel storage/app/productsphoto
 
-            // dd( $request->file('photo')->store('products')); //Enviando para dentro do laravel storage/app/productsphoto
+        //     // $nameFile = $request->name . '.' . $request->photo->extension();
+        //     // dd( $request->file('photo')->storeAs('products', $nameFile));  //storeAs
 
-            $nameFile = $request->name . '.' . $request->photo->extension();
-            dd( $request->file('photo')->storeAs('products', $nameFile));  //storeAs
+        //     // Upload de arquivos públicos no laravel
+        //     // 'default' => env('FILESYSTEM_DRIVER', 'public'),
+        //     // php artisan storage:link = LINK SIMBÓLICO ver no cmd:  ls -la public/
+        //     // http://app-laravel.test/storage/products/Gab2.png  = Acessando imagens publicas através do link simbólico
 
+        // }
 
-            // Upload de arquivos públicos no laravel
-            // 'default' => env('FILESYSTEM_DRIVER', 'public'),
-            // php artisan storage:link = LINK SIMBÓLICO ver no cmd:  ls -la public/
-            // http://app-laravel.test/storage/products/Gab2.png  = Acessando imagens publicas através do link simbólico
-
-
-        }
-        
     }
 
     /**
