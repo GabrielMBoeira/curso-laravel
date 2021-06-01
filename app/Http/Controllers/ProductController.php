@@ -79,11 +79,19 @@ class ProductController extends Controller
             // dd( $request->photo->extension());
             // dd( $request->photo->getClientOriginalName());
 
-            
+
             // dd( $request->file('photo')->store('products')); //Enviando para dentro do laravel storage/app/productsphoto
 
             $nameFile = $request->name . '.' . $request->photo->extension();
             dd( $request->file('photo')->storeAs('products', $nameFile));  //storeAs
+
+
+            // Upload de arquivos públicos no laravel
+            // 'default' => env('FILESYSTEM_DRIVER', 'public'),
+            // php artisan storage:link = LINK SIMBÓLICO ver no cmd:  ls -la public/
+            // http://app-laravel.test/storage/products/Gab2.png  = Acessando imagens publicas através do link simbólico
+
+
         }
         
     }
