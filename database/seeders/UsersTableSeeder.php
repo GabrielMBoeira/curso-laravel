@@ -16,13 +16,17 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        User::create([
-            'name' => 'Gabriel',
-            'email' => 'gabrielmboeira@gmail.com',
-            'password' => bcrypt('123456'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // https://www.youtube.com/watch?v=h0AgqMmZlfk
+        // factory(User::class, 10)->create();
+
+
+        // User::create([
+        //     'name' => 'Gabriel',
+        //     'email' => 'gabrielmboeira@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
 
         // DB::table('users')->insert([
