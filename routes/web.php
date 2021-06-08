@@ -9,6 +9,7 @@
 // Listar rotas comando: php artisan route:list
 
 use App\Http\Controllers\ProductController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 //Crud automático
@@ -141,3 +142,11 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/factories', function () {
+    
+    // User::factory()->count(4)->create();
+    return User::all();
+
+});
+

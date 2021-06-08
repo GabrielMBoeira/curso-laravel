@@ -20,8 +20,13 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition() 
     {
+
+        // // Criando uma factory com model vindo do User
+        // php artisan make:factory CategoryFactory --model=Models/User 
+        //Interessante sempre rodar comando composer dump-autoload
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
