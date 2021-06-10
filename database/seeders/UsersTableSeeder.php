@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
     {
 
         // Criando usuários MODEL=USER
+        // Comando para rodar a Seeder: php artisan db:seed --class=UsersTableSeeder
         User::factory()->count(4)->create();
 
 

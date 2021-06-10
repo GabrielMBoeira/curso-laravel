@@ -9,5 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
-    // protected $table = 'products';
+    // Já cria a migrate junto com o model
+    // php artisan make:model Product -m
+
+    // protected $table = 'products';   
 }
