@@ -58,47 +58,24 @@ class ProductController extends Controller
      */
     public function store(StoreUpdateProductRequest $request)
     {
+        $data = $request->only('name', 'description', 'price');
 
-        // //Se não passar a requisição volta para o arquivo de onde veio para mostrar erros 
-        // $request->validate([
-        //     'name' => 'required|min:3|max:255',
-        //     'descripition' => 'nullable|min:3|max:10000',      //nullable = opcional
-        //     'photo' => 'required|image',
-        // ]);
+        // Formato simples para salvar
+        Product::create($data);
 
-        dd('ok');
+        return redirect()->route('products.index');
 
-        //Pega todos os dados da requisição
-        // dd($request->all());
+        //Formato simples para salvar
+        // $data = $request->all();
+        // Product::create($data);
 
-        //Pegar dados específicos
-        // dd($request->only(['name', 'description']));
-        // dd($request->description);
 
-        //Retorna true e false se existe o name no form
-        // dd($request->has('fulano'));
-
-        //Se vier valor no input ele seta, se não vier ele retorna o valor informado como default
-        // dd($request->input('name', 'default'));
-
-        //Pega todos menos o exceto
-        // dd($request->except('_token', 'name'));
-
-        // if ( $request->file('photo')->isValid() ) {
-        //     // dd( $request->photo->extension());
-        //     // dd( $request->photo->getClientOriginalName());
-
-        //     // dd( $request->file('photo')->store('products')); //Enviando para dentro do laravel storage/app/productsphoto
-
-        //     // $nameFile = $request->name . '.' . $request->photo->extension();
-        //     // dd( $request->file('photo')->storeAs('products', $nameFile));  //storeAs
-
-        //     // Upload de arquivos públicos no laravel
-        //     // 'default' => env('FILESYSTEM_DRIVER', 'public'),
-        //     // php artisan storage:link = LINK SIMBÓLICO ver no cmd:  ls -la public/
-        //     // http://app-laravel.test/storage/products/Gab2.png  = Acessando imagens publicas através do link simbólico
-
-        // }
+        //Formato mais trabalhoso para salvar
+        // $product = new Product;   
+        // $product->name = $request->name;
+        // $product->price = $request->price;
+        // $product->description = $request->description;
+        // $product->save();
 
     }
 
@@ -110,7 +87,23 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return "Detalhes do produto {$id}";
+
+        // $product = Product::where('id', $id)->get(); //retorna um array
+        // $product = Product::where('id', $id)->first(); //retorna apenas objeto
+
+        // --------------------------------
+        //Encontra produto por id e se não encontrar retorna de onde veio
+
+        if (!$product = Product::find($id)) 
+            return redirect()->back();
+
+        // dd($product);
+        // --------------------------------
+
+
+        return view('admin.pages.products.show', [
+            "product" => $product
+        ]);
     }
 
     /**

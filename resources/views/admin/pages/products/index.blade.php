@@ -4,16 +4,16 @@
 
 @section('content')
     <h1>Exibindo os produtos (index)</h1>
-    <a href="{{ route('products.create') }}">Cadastrar</a>
+    <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Cadastrar</a>
     <hr>
 
 
-    <table border="1">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Preço</th>
-                <th>Ação</th>
+                <th width="100">Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -22,14 +22,16 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>
-                        <a href="http://">Detalhes</a>
+                        <a href=" {{ route('products.show', $product->id) }} ">Detalhes</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    {{ $products->links() }}
+    <div class="pagination">
+        {{ $products->links() }}
+    </div>
 
 
 @endsection
