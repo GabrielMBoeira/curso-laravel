@@ -10,8 +10,9 @@ class ProductController extends Controller
 {
 
     protected $request;
+    private $repository;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Product $product)
     {
         // dd($request);
 
@@ -22,6 +23,7 @@ class ProductController extends Controller
         // $this->middleware('auth')->except(['index', 'show']); //Todos os métodos precisa estar autenticado -> exceto index e show
 
         $this->request = $request;
+        $this->repository = $product;
     }
 
     /**
@@ -61,7 +63,7 @@ class ProductController extends Controller
         $data = $request->only('name', 'description', 'price');
 
         // Formato simples para salvar
-        Product::create($data);
+        $this->repository->create($data);
 
         return redirect()->route('products.index');
 
@@ -94,7 +96,7 @@ class ProductController extends Controller
         // --------------------------------
         //Encontra produto por id e se não encontrar retorna de onde veio
 
-        if (!$product = Product::find($id)) 
+        if (!$product = $this->repository->find($id)) 
             return redirect()->back();
 
         // dd($product);
@@ -137,6 +139,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        $product = $this->repository->find($id)->where('id', $id)->first();
+        if (!$product) { 
+            return redirect()->back();
+        }
+
+        // dd("Deletando um produto pelo id: $id");
+
+        $product->delete();
+
+        return redirect()->route('products.index');
+
     }
 }

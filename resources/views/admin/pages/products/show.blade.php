@@ -20,4 +20,10 @@
     </li>
 </ul>
 
+<form action=" {{ route('products.destroy', $product->id) }} " method="post">
+    @csrf
+    @method('DELETE')
+    <button class="btn btn-danger">Deletar o produto {{ $product->name }}</button>
+</form>
+
 @endsection
