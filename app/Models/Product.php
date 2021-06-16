@@ -13,4 +13,6 @@ class Product extends Model
     // php artisan make:model Product -m
 
     // protected $table = 'products';   
+
+    protected $fillable = ['name', 'price', 'description', 'image'];
 }
