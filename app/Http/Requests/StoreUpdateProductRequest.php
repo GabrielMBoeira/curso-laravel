@@ -23,11 +23,14 @@ class StoreUpdateProductRequest extends FormRequest
      */
     public function rules()
     {
+        //recupera valor do segundo seguimento (entre "/")
+        $id = $this->segment(2);
+
         return [
 
-            'name' => 'required|min:3|max:255',
+            'name' => "required|min:3|max:255|unique:products,name,{$id},id",
             'descripition' => 'nullable|min:3|max:10000',      //nullable = opcional
-            'price' => 'required',     
+            'price' => "required|regex:/^\d+(\.\d{1,2})?$/",     
             'image' => 'nullable|image'
 
         ];
