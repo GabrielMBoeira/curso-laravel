@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::any('/products/search', 'ProductController@search')->name('product.search')->middleware('auth');
-Route::resource('products', 'ProductController')->middleware('auth');
+Route::resource('products', 'ProductController')->middleware(['auth', 'check.is.admin']);
 
 // // //Rotas para fazer o CRUD
 // Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy'); //Faz de fato o update do prooduto
@@ -154,6 +154,5 @@ Route::get('/factories', function () {
 });
 
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
