@@ -27,7 +27,7 @@ class StoreUpdateProductRequest extends FormRequest
         $id = $this->segment(2);
 
         return [
-
+                                 // coluna name na tabela produtos utilizando id de comparação
             'name' => "required|min:3|max:255|unique:products,name,{$id},id",
             'descripition' => 'nullable|min:3|max:10000',      //nullable = opcional
             'price' => "required|regex:/^\d+(\.\d{1,2})?$/",     

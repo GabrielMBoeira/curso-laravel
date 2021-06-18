@@ -9,8 +9,12 @@
 // Listar rotas comando: php artisan route:list
 
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
+
+Route::any('/products/search', 'ProductController@search')->name('product.search');
 
 //Crud automático
 Route::resource('products', 'ProductController'); //->middleware('auth');
