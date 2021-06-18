@@ -11,13 +11,12 @@
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::any('/products/search', 'ProductController@search')->name('product.search');
-
-//Crud automático
-Route::resource('products', 'ProductController'); //->middleware('auth');
+Route::any('/products/search', 'ProductController@search')->name('product.search')->middleware('auth');
+Route::resource('products', 'ProductController')->middleware('auth');
 
 // // //Rotas para fazer o CRUD
 // Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy'); //Faz de fato o update do prooduto
@@ -28,9 +27,9 @@ Route::resource('products', 'ProductController'); //->middleware('auth');
 // Route::get('/products', 'ProductController@index')->name('products.index'); //Exibe uma lista de produtos
 // Route::post('/products', 'ProductController@store')->name('products.store'); //Faz de fato o cadastro do prooduto
 
-Route::get('/login', function () {
-    return 'Login';
-})->name('login');
+// Route::get('/login', function () {
+//     return 'Login';
+// })->name('login');
 
 //----------------------------------Grupos de Rotas--------------------------------------------
 
@@ -154,3 +153,7 @@ Route::get('/factories', function () {
 
 });
 
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
